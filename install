@@ -1,3 +1,0 @@
-rm -rf ~/.config/kitty
-
-ln -srv kitty ~/.config/kitty
