@@ -51,6 +51,7 @@ brew install neovim
 brew install node
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
+brew install starship
 
 # Change the default shell to zsh
 echo "Changing the default shell to zsh for future logins..."
