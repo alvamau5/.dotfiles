@@ -20,13 +20,6 @@ fi
 echo "Installing promt Starship"
 curl -sS https://starship.rs/install.sh | sh
 
-echo "Removing existing dotfiles"
-# remove files if they already exist
-rm -rf ~/.zshrc
-
-echo "Creating symlinks ZSH"
-# Symlinking files zsh
-ln -s ~/dotfiles/zshrc ~/.zshrc
 
 echo "Installing Oh My ZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -48,8 +41,14 @@ echo "Installing dependencies"
 # Installing dependencies
 brew install neovim
 brew install node
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
+
+echo "Removing existing dotfiles"
+# remove files if they already exist
+rm -rf ~/.zshrc
+
+echo "Creating symlinks ZSH"
+# Symlinking files zsh
+ln -s ~/dotfiles/zshrc ~/.zshrc
 
 # Change the default shell to zsh
 echo "Changing the default shell to zsh for future logins..."
@@ -67,9 +66,9 @@ fi
 
 # Install terminal Kitty
 echo "Installing Terminal Kitty..."
-sudo dnf install kitty
+sudo dnf install -y kitty
 
-# Kity expects some folders already exist
+# Kitty expects some folders already exist
 mkdir -p ~/.config/ ~/.config/kitty/
 
 echo "Creating symlinks Neovim"
