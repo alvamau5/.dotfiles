@@ -9,7 +9,7 @@ if [[ $(uname) == "Linux"]]; then
         if [[ $NAME == "Fedora" ]]; then
           echo "Updating system package (Fedora)..."
           sudo dnf upgrade -y
-          sudo dnf install git zsh curl wget @development-tools
+          sudo dnf install -y git zsh curl wget @development-tools
         elif [[ $NAME == "Ubuntu" ]]; then
           echo "Updating system packages (Ubuntu)..."
           sudo apt update && sudo apt upgrade -y
