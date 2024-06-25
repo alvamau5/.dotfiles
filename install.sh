@@ -17,26 +17,25 @@ if [[ $(uname) == "Linux"]]; then
         fi
 fi
 
+echo "Installing promt Starship"
+curl -sS https://starship.rs/install.sh | sh
+
+echo "Removing existing dotfiles"
+# remove files if they already exist
+rm -rf ~/.zshrc
+
+echo "Creating symlinks ZSH"
+# Symlinking files zsh
+ln -s ~/dotfiles/zshrc ~/.zshrc
+
 echo "Installing Oh My ZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "installing powerlevel10k"
-if [ -d ${p10kdir} ]
-then
-echo "the direcotry exists: ${p10kdir}"
-else
-echo -e "the direcotry do not exists\ncloning the repository"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10kdir}
-fi
-echo "adding theme powrlevel10k in .zshrc"
-sed -i -E 's/^ZSH_THEME=.+/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ${HOME}/.zshrc
-
-echo "Creating symlinks"
+echo "Creating symlinks Neovim"
 # Neovim expects some folders already exist
 mkdir -p ~/.config/ ~/.config/nvim/
 
-# Symlinking files
-ln -s ~/dotfiles/zshrc ~/.zshrc
+# Symlinking files neovim
 ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 
 echo "Installing brew"
@@ -51,7 +50,6 @@ brew install neovim
 brew install node
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
-brew install starship
 
 # Change the default shell to zsh
 echo "Changing the default shell to zsh for future logins..."
@@ -66,3 +64,14 @@ echo "Setup complete."
 echo "Log out and back in to use zsh as your default shell."
 sudo chsh -s $(which zsh) $USER
 fi
+
+# Install terminal Kitty
+echo "Installing Terminal Kitty..."
+sudo dnf install kitty
+
+# Kity expects some folders already exist
+mkdir -p ~/.config/ ~/.config/kitty/
+
+echo "Creating symlinks Neovim"
+# Symlinking files terminal kitty
+ln -s ~/dotfiles/kitty/* ~/.config/kitty/
