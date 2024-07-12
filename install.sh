@@ -9,7 +9,7 @@ if [[ $(uname) == "Linux"]]; then
         if [[ $NAME == "Fedora" ]]; then
           echo "Updating system package (Fedora)..."
           sudo dnf upgrade -y
-          sudo dnf install -y git zsh curl wget @development-tools
+          sudo dnf install -y git make zsh curl wget @development-tools
         elif [[ $NAME == "Ubuntu" ]]; then
           echo "Updating system packages (Ubuntu)..."
           sudo apt update && sudo apt upgrade -y
@@ -50,9 +50,9 @@ echo "Creating symlinks ZSH"
 # Symlinking files zsh
 ln -s ~/dotfiles/zshrc ~/.zshrc
 
-# Change the default shell to zsh
-echo "Changing the default shell to zsh for future logins..."
-sudo chsh -s $(which zsh) $USER
+# # Change the default shell to zsh
+# echo "Changing the default shell to zsh for future logins..."
+# sudo chsh -s $(which zsh) $USER
 
 # Check if the current shell is already zsh
 if [ "$SHELL" = "/usr/bin/zsh" ]; then
@@ -71,6 +71,16 @@ sudo dnf install -y kitty
 # Kitty expects some folders already exist
 mkdir -p ~/.config/ ~/.config/kitty/
 
+
 echo "Creating symlinks Neovim"
 # Symlinking files terminal kitty
 ln -s ~/dotfiles/kitty/* ~/.config/kitty/
+
+# Install ranger file manager
+echo "Install Ranger File Manager and Configs"
+sudo dnf install ranger
+sudo dnf install w3m w3m-img
+
+echo "Creating symlinks Neovim"
+# Symlinking files terminal kitty
+ln -s ~/dotfiles/ranger/* ~/.config/ranger/
