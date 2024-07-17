@@ -29,7 +29,7 @@ echo "Creating symlinks Neovim"
 mkdir -p ~/.config/ ~/.config/nvim/
 
 # Symlinking files neovim
-ln -s ~/dotfiles/nvim/* ~/.config/nvim/
+ln -s ~/.dotfiles/nvim/* ~/.config/nvim/
 
 echo "Installing brew"
 # install brew
@@ -41,6 +41,7 @@ echo "Installing dependencies"
 # Installing dependencies
 brew install neovim
 brew install node
+brew install npm
 
 echo "Removing existing dotfiles"
 # remove files if they already exist
@@ -48,7 +49,7 @@ rm -rf ~/.zshrc
 
 echo "Creating symlinks ZSH"
 # Symlinking files zsh
-ln -s ~/dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zshrc ~/.zshrc
 
 # # Change the default shell to zsh
 # echo "Changing the default shell to zsh for future logins..."
@@ -74,7 +75,7 @@ mkdir -p ~/.config/ ~/.config/kitty/
 
 echo "Creating symlinks Neovim"
 # Symlinking files terminal kitty
-ln -s ~/dotfiles/kitty/* ~/.config/kitty/
+ln -s ~/.dotfiles/kitty/* ~/.config/kitty/
 
 # Install ranger file manager
 echo "Install Ranger File Manager and Configs"
@@ -83,4 +84,4 @@ sudo dnf install w3m w3m-img
 
 echo "Creating symlinks Neovim"
 # Symlinking files terminal kitty
-ln -s ~/dotfiles/ranger/* ~/.config/ranger/
+ln -s ~/.dotfiles/ranger/* ~/.config/ranger/
