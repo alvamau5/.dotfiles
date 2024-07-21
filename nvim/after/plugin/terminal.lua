@@ -1,7 +1,7 @@
 require("toggleterm").setup{
-  size = 40,
+  size = 10,
   open_mapping = [[<c-\>]],
-  direction = 'vertical',
+  direction = 'horizontal',
 }
 
 -- configuracion de s1n7ax terminal

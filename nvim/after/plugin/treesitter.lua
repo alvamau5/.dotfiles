@@ -16,9 +16,9 @@ require 'nvim-treesitter.configs'.setup {
     -- list of languages you want to disable the plugin for
     disable = { 'jsx', 'cpp' },
     -- Which query to use for finding delimiters
-    query = 'rainbow-parens',
+    query = 'rainbow-delimiters',
     -- Highlight the entire buffer all at once
-    strategy = require('ts-rainbow').strategy.global,
+    strategy = require('rainbow-delimiters').strategy.global,
   },
 
   highlight = {
@@ -32,5 +32,4 @@ require 'nvim-treesitter.configs'.setup {
   },
 
   indent = { enable = true },
-  autotag = { enable = true },
 }

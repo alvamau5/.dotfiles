@@ -25,13 +25,17 @@ require('lazy').setup({
   'goolord/alpha-nvim',
   'romgrk/barbar.nvim',
   'lewis6991/gitsigns.nvim',
-  'navarasu/onedark.nvim',
+  -- 'navarasu/onedark.nvim',
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, --Ensure it loads first
+  },
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
   'echasnovski/mini.nvim',
   'folke/trouble.nvim',
   'lukas-reineke/indent-blankline.nvim',
-  'HiPhish/nvim-ts-rainbow2',
+  'HiPhish/rainbow-delimiters.nvim',
   'windwp/nvim-ts-autotag',
   -- 's1n7ax/nvim-terminal',
   {
