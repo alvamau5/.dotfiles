@@ -51,9 +51,9 @@ echo "Creating symlinks ZSH"
 # Symlinking files zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 
-# # Change the default shell to zsh
-# echo "Changing the default shell to zsh for future logins..."
-# sudo chsh -s $(which zsh) $USER
+# Change the default shell to zsh
+echo "Changing the default shell to zsh for future logins..."
+sudo chsh -s $(which zsh) $USER
 
 # Check if the current shell is already zsh
 if [ "$SHELL" = "/usr/bin/zsh" ]; then
