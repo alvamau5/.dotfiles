@@ -79,7 +79,7 @@ plugins=(
 	nvm
         web-search
         zsh-autosuggestions
-        zsh-syntax-highlighting 
+        zsh-syntax-highlighting
         zsh-completions
 )
 

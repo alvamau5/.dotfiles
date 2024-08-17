@@ -41,8 +41,8 @@ title-font: "Sound System Regular 200"
 }
 
 + label {
-        left = 30%
-        top = 25%
+        left = 25%
+        top = 26%
         height = 30
         width = 600
       
@@ -56,20 +56,20 @@ title-font: "Sound System Regular 200"
 
 #boot menu
 + boot_menu {
-	left = 10%
-	width = 80%
-	top = 46%
-	height = 20%	
-	item_font = "Sevastopol Interface Regular 45"
+	left = 5%
+	width = 90%
+	top = 40%
+	height = 30%	
+	item_font = "Sevastopol Interface Regular 72"
 	item_color = "#b98000"
-	selected_item_font = "Sevastopol Interface Regular 45"
+	selected_item_font = "Sevastopol Interface Regular 72"
 	selected_item_color = "#f5ac02"
 	icon_height = 25
 	icon_width = 25
-	item_height = 35
+	item_height = 40
 	item_padding = 0
 	item_icon_space = 0
-	item_spacing = 35
+	item_spacing = 30
 	scrollbar = true
 	scrollbar_width = 20
 	scrollbar_thumb = "slider_*.png"
@@ -89,4 +89,3 @@ title-font: "Sound System Regular 200"
 	border_color = "#b98000"
 	text = "@TIMEOUT_NOTIFICATION_LONG@"
 }
-
