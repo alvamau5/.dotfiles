@@ -76,15 +76,16 @@ return {
         },
       },
     })
-    -- This closes the tree as soon as a file buffer is opened
-    vim.api.nvim_create_autocmd("BufEnter", {
-      pattern = "*",
-      callback = function()
-        if vim.bo.buftype == "" then
-          vim.cmd("NvimTreeClose")
-        end
-      end,
-    })
+
+    -- -- This closes the tree as soon as a file buffer is opened
+    -- vim.api.nvim_create_autocmd("BufEnter", {
+    --   pattern = "*",
+    --   callback = function()
+    --     if vim.bo.buftype == "" then
+    --       vim.cmd("NvimTreeClose")
+    --     end
+    --   end,
+    -- })
 
     vim.keymap.set("n", "<C-b>", ":NvimTreeFindFileToggle<CR>", { silent = true })
   end,

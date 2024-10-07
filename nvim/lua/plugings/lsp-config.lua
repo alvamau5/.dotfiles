@@ -23,7 +23,7 @@ return {
           source = "always", -- Or "if_many"
         },
       })
-    end
+    end,
   },
   {
     'williamboman/mason.nvim',
@@ -37,14 +37,14 @@ return {
           },
         },
       })
-    end
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       local lsp_zero = require("lsp-zero")
       require("mason-lspconfig").setup({
-        ensure_installed = { "tsserver", "eslint", "lua_ls" },
+        ensure_installed = { "ts_ls", "eslint", "lua_ls" },
         automatic_installation = false,
         automatic_setup = true,
         handlers = {
@@ -55,7 +55,7 @@ return {
           end,
         },
       })
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -64,7 +64,7 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities
       })
       lspconfig.solargraph.setup({

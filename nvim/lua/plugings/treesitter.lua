@@ -19,7 +19,8 @@ return {
           "css",
           "python",
           "json",
-          "tsx"
+          "tsx",
+          "pug",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
