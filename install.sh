@@ -23,8 +23,8 @@ case "$DISTRO" in
 esac
 
 if [ $DISTRO_NAME = "fedora" ]; then
-    sudo dnf upgrade -y
-    sudo dnf install git make zsh curl wget @development-tools -y
+   #sudo dnf upgrade -y
+    sudo dnf install make zsh curl wget @development-tools -y
 elif [ $DISTRO_NAME = "ubuntu" ]; then
     sudo apt update && sudo apt upgrade -y
     sudo apt install zsh curl wget build-essential git -y
@@ -41,6 +41,7 @@ echo "Installing dependencies"
 brew install neovim
 brew install node
 brew install npm
+brew install yazi
 
 echo "Creating symlinks Neovim..."
 # Neovim expects some folders already exist
