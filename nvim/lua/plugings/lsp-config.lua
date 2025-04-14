@@ -67,9 +67,6 @@ return {
       lspconfig.ts_ls.setup({
         capabilities = capabilities
       })
-      lspconfig.solargraph.setup({
-        capabilities = capabilities
-      })
       lspconfig.html.setup({
         capabilities = capabilities
       })

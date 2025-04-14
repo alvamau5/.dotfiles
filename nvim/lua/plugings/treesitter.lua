@@ -16,6 +16,7 @@ return {
           "lua",
           "typescript",
           "javascript",
+          "html",
           "css",
           "python",
           "json",

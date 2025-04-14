@@ -12,8 +12,8 @@ vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 vim.keymap.set("n", "<esc>", ":noh<return><esc>", opts)
 
 -- Move to previous/next
-vim.keymap.set('n', '<A-,>', ':bprevious<CR>')
-vim.keymap.set('n', '<A-.>', ':bnext<CR>')
+vim.keymap.set('n', '<tab>', ':bprevious<CR>')
+vim.keymap.set('n', '<s-tab>', ':bnext<CR>')
 -- -- Pin/unpin buffer
 vim.keymap.set('n', '<A-p>', ':BufferLineTogglePin<CR>')
 -- map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)

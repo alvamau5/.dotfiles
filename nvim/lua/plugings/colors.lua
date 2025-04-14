@@ -1,28 +1,28 @@
 return {
-  "olimorris/onedarkpro.nvim",
-  priority = 1000, -- Ensure it loads first
-  config = function()
-    require("onedarkpro").setup({
-      colors = {},             -- Override default colors or create your own
-      highlights = {},         -- Override default highlight groups or create your own
-      styles = {               -- For example, to apply bold and italic, use "bold,italic"
-        types = "NONE",        -- Style that is applied to types
-        methods = "NONE",      -- Style that is applied to methods
-        numbers = "NONE",      -- Style that is applied to numbers
-        strings = "NONE",      -- Style that is applied to strings
-        comments = "italic",   -- Style that is applied to comments
-        keywords = "NONE",     -- Style that is applied to keywords
-        constants = "NONE",    -- Style that is applied to constants
-        functions = "italic",  -- Style that is applied to functions
-        operators = "NONE",    -- Style that is applied to operators
-        variables = "italic",  -- Style that is applied to variables
-        parameters = "NONE",   -- Style that is applied to parameters
-        conditionals = "NONE", -- Style that is applied to conditionals
-        virtual_text = "NONE", -- Style that is applied to virtual text
-      },
-    })
-    vim.cmd("colorscheme onedark_dark")
-  end,
+  -- "olimorris/onedarkpro.nvim",
+  -- priority = 1000, -- Ensure it loads first
+  -- config = function()
+  --   require("onedarkpro").setup({
+  --     colors = {},             -- Override default colors or create your own
+  --     highlights = {},         -- Override default highlight groups or create your own
+  --     styles = {               -- For example, to apply bold and italic, use "bold,italic"
+  --       types = "NONE",        -- Style that is applied to types
+  --       methods = "NONE",      -- Style that is applied to methods
+  --       numbers = "NONE",      -- Style that is applied to numbers
+  --       strings = "NONE",      -- Style that is applied to strings
+  --       comments = "italic",   -- Style that is applied to comments
+  --       keywords = "NONE",     -- Style that is applied to keywords
+  --       constants = "NONE",    -- Style that is applied to constants
+  --       functions = "italic",  -- Style that is applied to functions
+  --       operators = "NONE",    -- Style that is applied to operators
+  --       variables = "italic",  -- Style that is applied to variables
+  --       parameters = "NONE",   -- Style that is applied to parameters
+  --       conditionals = "NONE", -- Style that is applied to conditionals
+  --       virtual_text = "NONE", -- Style that is applied to virtual text
+  --     },
+  --   })
+  --   vim.cmd("colorscheme onedark_dark")
+  -- end,
   -- "ramojus/mellifluous.nvim",
   -- priority = 1000, --Ensure it loads first
   -- -- version = "v0.*", -- uncomment for stable config (some features might be missed if/when v1 comes out)
@@ -37,11 +37,11 @@ return {
   -- dependencies = {
   --   "tjdevries/colorbuddy.nvim"
   -- },
-  -- priority = 1000,
   -- config = function()
+  -- priority = 1000,
   --   require("vitesse").setup {
   --     comment_italics = true,
-  --     transparent_background = false,
+  --     transparent_background = true,
   --     transparent_float_background = true, -- aka pum(popup menu) background
   --     reverse_visual = false,
   --     dim_nc = false,
@@ -55,5 +55,16 @@ return {
   --   }
   --
   --   vim.cmd("colorscheme vitesse")
-  -- end
+  -- end,
+
+  "scottmckendry/cyberdream.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("cyberdream").setup {
+      transparent = true,
+      italic_comments = true,
+    }
+    vim.cmd("colorscheme cyberdream")
+  end,
 }

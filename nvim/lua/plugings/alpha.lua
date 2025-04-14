@@ -33,7 +33,7 @@ return {
 	dashboard.button("c", "  Config", ":e $MYVIMRC<CR>"),
   	dashboard.button("q", " Quit", ":qa<CR>"),
 	}
-	dashboard.section.footer.val = "By Darlingi 󰣇"
+	dashboard.section.footer.val = "Alvamau5 󰣇"
 
 	alpha.setup(dashboard.opts)
 

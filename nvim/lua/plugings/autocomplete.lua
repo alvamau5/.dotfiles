@@ -5,6 +5,7 @@ return {
     dependencies = {
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
+      'mlaursen/vim-react-snippets',
     }
   },
   {
@@ -15,11 +16,17 @@ return {
     config = function()
       local cmp = require 'cmp'
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      require("luasnip.loaders.from_vscode").lazy_load()
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
+
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      require("vim-react-snippets").lazy_load()
+      -- if you do not want to wrap all props in `Readonly<T>`
+      local config = require("vim-react-snippets.config")
+      config.readonly_props = false
 
       cmp.setup({
         snippet = {
