@@ -34,7 +34,8 @@ echo "Installing brew"
 # install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew update
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bash_profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "Installing dependencies"
 # Installing dependencies
