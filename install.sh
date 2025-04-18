@@ -7,7 +7,6 @@ DISTRO_NAME=""
 
 echo "Installing oh-my-zsh and, neovim and devtools in Linux distro like fedora, ubuntu"
 #
-echo "Installing tools: git, neovim, curl, wget and devtools"
 echo "detecting the Linux distribution"
 # NAME="Fedora Linux"
 # NAME="Ubuntu"
@@ -30,19 +29,22 @@ elif [ $DISTRO_NAME = "ubuntu" ]; then
     sudo apt install zsh curl wget build-essential git -y
 fi
 
-echo "Installing brew"
-# install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bash_profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+install_brew() {
+  if ! check_command brew; then
+    echo "Installing Brew..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      if [[ $os_type == "Linux" ]]; then
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bashrc"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      fi
+  fi
+}
 
 echo "Installing dependencies"
 # Installing dependencies
 brew install neovim
 brew install node
 brew install npm
-brew install yazi
 
 echo "Creating symlinks Neovim..."
 # Neovim expects some folders already exist
@@ -58,14 +60,14 @@ sudo dnf install -y kitty
 # Kitty expects some folders already exist
 mkdir -p ~/.config/ ~/.config/kitty/
 
-echo "Creating symlinks Neovim..."
+echo "Creating symlinks Kitty..."
 # Symlinking files terminal kitty
 ln -srv ~/.dotfiles/kitty/* ~/.config/kitty/
 
 # Install ranger file manager
 echo "Install Ranger File Manager and Configs..."
-sudo dnf install ranger
-sudo dnf install w3m w3m-img
+sudo dnf install -y ranger
+sudo dnf install -y w3m w3m-img
 
 echo "Creating folder for ranger"
 # Create folder for ranger file manager
@@ -94,16 +96,19 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
-# Change the default shell to zsh
-echo "Changing the default shell to zsh for future logins..."
-sudo chsh -s $(which zsh) $USER
-
 # Check if the current shell is already zsh
-if [ "$SHELL" = "/usr/bin/zsh" ]; then
-echo "DONE!"
+if [[ "$SHELL" == *"zsh" ]]; then
+    echo "ZSH is the default shell."
 else
-# Change the default shell to zsh for future logins
-echo "Setup complete."
-echo "Log out and back in to use zsh as your default shell."
-sudo chsh -s $(which zsh) $USER
+    # Get the path of zsh
+    zsh_path=$(which zsh)
+
+    # Change the default shell to zsh for future logins
+    echo "Setting up zsh as your default shell..."
+    if chsh -s "$zsh_path"; then
+	echo "Setup complete. Log out and back in to start using zsh as your default shell."
+    else
+	echo "Error: Failed to change the default shell."
+	echo "Please try running 'chsh -s $(which zsh)' manually."
+    fi
 fi
