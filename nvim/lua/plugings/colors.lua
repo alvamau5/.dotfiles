@@ -67,4 +67,31 @@ return {
     }
     vim.cmd("colorscheme cyberdream")
   end,
+
+  -- "navarasu/onedark.nvim",
+  -- priority = 1000, -- make sure to load this before all the other start plugins
+  -- config = function()
+  --   require('onedark').setup {
+  --     style = 'warmer',
+  --     transparent = true,
+  --
+  --     -- Change code style ---
+  --     code_style = {
+  --       comments = 'italic',
+  --       keywords = 'none',
+  --       functions = 'italic',
+  --       strings = 'none',
+  --       variables = 'none'
+  --     },
+  --
+  --     -- Plugins Config --
+  --     diagnostics = {
+  --       darker = true,     -- darker colors for diagnostic
+  --       undercurl = true,  -- use undercurl instead of underline for diagnostics
+  --       background = true, -- use background color for virtual text
+  --     },
+  --   }
+  --   -- Enable theme
+  --   require('onedark').load()
+  -- end
 }
