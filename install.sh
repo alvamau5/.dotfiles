@@ -80,9 +80,6 @@ ln -srv ~/.dotfiles/ranger/* ~/.config/ranger/
 echo "Installing promt Starship"
 curl -sS https://starship.rs/install.sh | sh
 
-echo "Installing Oh My ZSH"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 echo "Removing existing dotfiles"
 # remove files if they already exist
 rm -rf ~/.zshrc
@@ -95,6 +92,9 @@ ln -srv ~/.dotfiles/zshrc ~/.zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+echo "Installing Oh My ZSH"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Check if the current shell is already zsh
 if [[ "$SHELL" == *"zsh" ]]; then
