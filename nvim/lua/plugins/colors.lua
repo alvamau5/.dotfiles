@@ -57,17 +57,54 @@ return {
   --   vim.cmd("colorscheme vitesse")
   -- end,
 
-  "scottmckendry/cyberdream.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require("cyberdream").setup {
-      transparent = true,
-      italic_comments = true,
-    }
-    vim.cmd("colorscheme cyberdream")
-  end,
+  -- "scottmckendry/cyberdream.nvim",
+  -- lazy = false,
+  -- priority = 1000,
+  -- config = function()
+  --   require("cyberdream").setup {
+  --     transparent = true,
+  --     italic_comments = true,
+  --   }
+  --   vim.cmd("colorscheme cyberdream")
+  -- end,
 
+  "anAcc22/sakura.nvim",
+  dependencies = { "rktjmp/lush.nvim" },
+  priority = 1000,
+  init = function()
+    vim.cmd.colorscheme("sakura")
+    local purple = "#a289a1"
+
+    local highlights = {
+      --general
+      ModeMsg = { fg = purple },
+      CursorLineNr = { fg = purple },
+
+      -- git signs
+      GitSignsAdd = { fg = purple },
+      GitSignsAddNr = { fg = purple },
+      GitSignsAddLn = { fg = purple },
+      GitSignsChange = { fg = purple },
+      GitSignsChangeNr = { fg = purple },
+      GitSignsChangeLn = { fg = purple },
+      GitSignsChangedelete = { fg = purple },
+
+      -- file tree
+      NvimTreeGitDirty = { fg = purple },
+      NvimTreeGitStaged = { fg = purple },
+      NvimTreeGitMerge = { fg = purple },
+      NvimTreeGitRenamed = { fg = purple },
+      NvimTreeGitNew = { fg = purple },
+      NvimTreeGitDeleted = { fg = purple },
+      NvimTreeSpecialFile = { bold = true },
+    }
+
+    -- set highlight colors
+    for group, colors in pairs(highlights) do
+      vim.api.nvim_set_hl(0, group, colors)
+    end
+  end,
+  --
   -- "navarasu/onedark.nvim",
   -- priority = 1000, -- make sure to load this before all the other start plugins
   -- config = function()
@@ -93,5 +130,5 @@ return {
   --   }
   --   -- Enable theme
   --   require('onedark').load()
-  -- end
+  -- end,
 }

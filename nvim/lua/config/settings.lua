@@ -1,5 +1,6 @@
 -- Appearance
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 vim.o.pumheight = 10 -- Max items to show in pop up menu
 vim.o.cmdheight = 1  -- Max items to show in command menu
 
