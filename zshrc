@@ -62,7 +62,9 @@ function y() {
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 # GitHub Credentials
 GITHUB_USERNAME=alvamau5
