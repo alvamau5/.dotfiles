@@ -126,27 +126,12 @@ setup_mac() {
 	install_brew_cask_packages
 }
 
-setup_bluefin() {
-	echo -e "Using specific config for Bluefin \n"
-
-	create_symlinks
-
-	install_brew_packages
-
-	ujust shell zsh
-
-	ujust dx-group # setup user and permissions for docker
-}
-
-
 os_type=""
 
 if check_command ujust; then
-    os_type="Bluefin"
+        os_type="Linux"
 elif [[ $(uname) == "Darwin" ]]; then
     os_type="Mac"
-else
-    os_type="Linux"
 fi
 
 echo -e "$os_type detected. Using $os_type config... \n"
