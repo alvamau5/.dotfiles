@@ -2,7 +2,10 @@
 
 # Function to keep updating the sudo timestamp until the script ends
 keep_sudo_alive() {
-    while true; do sudo -n true; sleep 60; done 2>/dev/null &
+	while true; do
+		sudo -n true
+		sleep 60
+	done 2>/dev/null &
 }
 
 # Function to check if a command exists
@@ -38,7 +41,7 @@ create_symlinks() {
 
 install_brew_packages() {
 echo "Installing packages brew"
-	brew update
+	    brew update
 
      	brew install neovim
      	brew install nvm   
@@ -46,8 +49,8 @@ echo "Installing packages brew"
      	brew install npm
      	brew install gh
      	brew install starship
-	brew install zsh-autosuggestions
-	brew install zsh-syntax-highlighting
+	    brew install zsh-autosuggestions
+	    brew install zsh-syntax-highlighting
       	brew install zsh-completions
       	brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
 
@@ -122,6 +125,19 @@ setup_mac() {
 	install_brew_packages
 	install_brew_cask_packages
 }
+
+setup_bluefin() {
+	echo -e "Using specific config for Bluefin \n"
+
+	create_symlinks
+
+	install_brew_packages
+
+	ujust shell zsh
+
+	ujust dx-group # setup user and permissions for docker
+}
+
 
 os_type=""
 
