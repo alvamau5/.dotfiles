@@ -41,29 +41,29 @@ create_symlinks() {
 
 install_brew_packages() {
 echo "Installing packages brew"
-	    brew update
+        brew updater
 
-     	brew install neovim
-     	brew install nvm   
-     	brew install node
-     	brew install npm
-     	brew install gh
-     	brew install starship
-	    brew install zsh-autosuggestions
-	    brew install zsh-syntax-highlighting
-      	brew install zsh-completions
-      	brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
+        brew install neovim
+        brew install nvm
+        brew install node
+        brew install npm
+        brew install gh
+        brew install starship
+        brew install zsh-autosuggestions
+        brew install zsh-syntax-highlighting
+        brew install zsh-completions
+        brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
 
-	if ! check_command fzf; then
-		brew install fzf
-		# Add FZF shortcuts
-		"$(brew --prefix)"/opt/fzf/install
-	fi
+        if ! check_command fzf; then
+          brew install fzf
+          # Add FZF shortcuts
+          "$(brew --prefix)"/opt/fzf/install
+        fi
 }
 
 install_brew_cask_packages() {
-	brew install --cask whatsapp
-	brew install --cask ghostty
+        brew install --cask whatsapp
+        brew install --cask ghostty
 }
 
 setup_linux() {
@@ -86,7 +86,7 @@ setup_linux() {
 	fc-cache -fv
 
 	install_brew
-	install_starship
+	# install_starship
 	install_brew_packages
 
 	# Check if the current shell is already zsh
