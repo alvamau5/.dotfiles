@@ -142,14 +142,11 @@ echo -e "$os_type detected. Using $os_type config... \n"
 # keep_sudo_alive
 
 case $os_type inee
-    "Bluefin")
-        setup_bluefin
+    "Linux")
+        setup_linux
         ;;
     "Mac")
         setup_mac
-        ;;
-    "Linux")
-        setup_linux
         ;;
     *)
         echo "Unknown OS type: $os_type. Exiting."
