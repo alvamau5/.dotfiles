@@ -38,6 +38,16 @@ alias gf='git fetch'
 alias glgg='git log --graph'
 alias grmc='git rm --cached'
 alias gst='git status'
+alias gpm='git push'
+
+# System aliases
+alias ll='ls -la',
+alias c='clear'
+alias ..='cd ..',
+alias ...='cd ../..'
+alias qt='exit',
+alias del='rm -r',
+alias b='bat'
 
 # History configuration
 HISTFILE=${HOME}/.zsh_history

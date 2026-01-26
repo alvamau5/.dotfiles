@@ -14,12 +14,12 @@ return {
     }
 
     local function format_on_save(client, bufnr)
-      if client.supports_method('textDocument/formatting') then
+      if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({
           group = augroup,
           buffer = bufnr,
         })
-        vim.api.nvim_create_autocmd('BufWritePre', {
+        vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,
           buffer = bufnr,
           callback = function()
@@ -32,17 +32,9 @@ return {
     null_ls.setup({
       debug = false,
       sources = null_sources,
-      on_attach = format_on_save
+      on_attach = format_on_save,
     })
 
-    -- null_ls.setup({
-    --   sources = {
-    --     null_ls.builtins.formatting.stylua,
-    --     null_ls.builtins.formatting.prettier,
-    --     null_ls.builtins.diagnostics.eslint_d,
-    --   },
-    -- })
-    --
     vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
   end,
 }

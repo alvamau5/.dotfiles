@@ -1,20 +1,31 @@
 return {
+  {
+    "hrsh7th/cmp-nvim-lsp",
+  },
+  {
+    "github/copilot.vim",
+  },
   -- Snippet Collection (Optional)
   {
-    'L3MON4D3/LuaSnip',
+    "L3MON4D3/LuaSnip",
     dependencies = {
-      'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets',
-      'mlaursen/vim-react-snippets',
-    }
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+      "mlaursen/vim-react-snippets",
+      {
+        "mlaursen/vim-react-snippets",
+        opts = {
+          readonly_props = true, -- Set to `false` if all props should no longer be wrapped in `Readonly<T>`.
+          test_framework = "@jest/globals", -- Set to "vitest" if you use vitest
+          test_renderer_path = "@testing-library/user-event", -- Set to a custom test renderer. For example "@/test-utils"
+        },
+      },
+    },
   },
   {
-    'hrsh7th/cmp-nvim-lsp'
-  },
-  {
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
     config = function()
-      local cmp = require 'cmp'
+      local cmp = require("cmp")
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -23,15 +34,10 @@ return {
 
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      require("vim-react-snippets").lazy_load()
-      -- if you do not want to wrap all props in `Readonly<T>`
-      local config = require("vim-react-snippets.config")
-      config.readonly_props = false
-
       cmp.setup({
         snippet = {
           expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
           end,
         },
         window = {
@@ -41,9 +47,9 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-m>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -60,10 +66,10 @@ return {
           end, { "i", "s" }),
         }),
         sources = {
-          { name = 'path' },
-          { name = 'nvim_lsp', keyword_length = 0 },
-          { name = 'buffer',   keyword_length = 3 },
-          { name = 'luasnip',  keyword_length = 2 },
+          { name = "path" },
+          { name = "nvim_lsp", keyword_length = 0 },
+          { name = "buffer", keyword_length = 3 },
+          { name = "luasnip", keyword_length = 2 },
         },
       })
     end,

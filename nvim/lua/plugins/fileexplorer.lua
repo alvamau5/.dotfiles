@@ -42,9 +42,6 @@ return {
           },
         },
       },
-      -- filters = {
-      --   dotfiles = true,
-      -- },
     })
 
     vim.opt.fillchars:append({ vert = " " }) -- remove window seperator
@@ -59,6 +56,6 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "<C-b>", ":NvimTreeFindFileToggle<CR>", { silent = true })
+    vim.keymap.set("n", "<C-b>", ":NvimTreeFindFileToggle<CR>", { silent = true }, { desc = "Toggle file explorer" }) -- toggle file explorer
   end,
 }

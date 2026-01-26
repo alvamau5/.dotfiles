@@ -34,7 +34,7 @@ return {
         rainbow = {
           enable = true,
           -- list of languages you want to disable the plugin for
-          disable = { 'jsx', 'cpp' },
+          disable = { 'cpp' },
           -- Which query to use for finding delimiters
           query = 'rainbow-delimiters',
           -- Highlight the entire buffer all at once
@@ -50,6 +50,8 @@ return {
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
+        -- use bash parser for zsh files
+        vim.treesitter.language.register("bash", "zsh"),
 
         indent = { enable = true },
       })

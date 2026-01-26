@@ -1,15 +1,15 @@
 return {
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v4.x',
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v4.x",
     config = function()
-      local lsp_zero = require('lsp-zero')
+      local lsp_zero = require("lsp-zero")
 
       lsp_zero.set_sign_icons({
-        error = "",
-        warn = "",
-        hint = "",
-        info = ""
+        error = "",
+        warn = "",
+        hint = "󰠠",
+        info = "",
       })
 
       lsp_zero.setup()
@@ -26,9 +26,9 @@ return {
     end,
   },
   {
-    'williamboman/mason.nvim',
+    "williamboman/mason.nvim",
     config = function()
-      require('mason').setup({
+      require("mason").setup({
         ui = {
           icons = {
             package_installed = "✓",
@@ -51,7 +51,7 @@ return {
           lsp_zero.default_setup,
           lua_ls = function()
             local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
+            require("lspconfig").lua_ls.setup(lua_opts)
           end,
         },
       })
@@ -61,18 +61,48 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local capabilities = cmp_nvim_lsp.default_capabilities()
+      local navic = require("nvim-navic")
 
-      local lspconfig = require("lspconfig")
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities
+      vim.lsp.config("tsserver", {
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
+        flags = { debounce_text_changes = 300 },
       })
-      lspconfig.html.setup({
-        capabilities = capabilities
+      vim.lsp.enable({ "tsserver" })
+
+      vim.lsp.config("html", {
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
+        flags = { debounce_text_changes = 300 },
       })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
+      vim.lsp.enable({ "html" })
+
+      vim.lsp.config("lua_ls", {
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
+        flags = { debounce_text_changes = 300 },
       })
+      vim.lsp.enable({ "lua_ls" })
+
+      vim.lsp.config("jsonls", {
+        on_attach = function(client, bufnr)
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
+      })
+      vim.lsp.enable({ "jsonls" })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})

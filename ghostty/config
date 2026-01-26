@@ -10,9 +10,10 @@
 #   /Users/lucio/Library/Application Support/com.mitchellh.ghostty/config
 #
 theme = ENCOM
-font-size = 13
+font-size = 12
 font-family = CaskaydiaCove Nerd Font
 gtk-titlebar = false
+title = "Ghostty"
 gtk-wide-tabs = false
 gtk-tabs-location = hidden
 window-theme = dark

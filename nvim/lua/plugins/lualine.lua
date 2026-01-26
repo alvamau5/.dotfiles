@@ -1,60 +1,109 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "archibate/lualine-time",
+    "SmiteshP/nvim-navic",
+  },
   config = function()
-    require('lualine').setup({
+    local lazy_status = require("lazy.status")
+    local Snacks = require("snacks")
+    local navic = require("nvim-navic")
+
+    require("lualine").setup({
       options = {
-        icons_enabled = true,
-        theme = 'lackluster',
-        component_separators = { left = '', right = '' },
+        icons_enabled = vim.g.have_nerd_font,
+        theme = "auto",
+        component_separators = { left = " ╱ ", right = " ╱ " },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        },
       },
       sections = {
         lualine_a = {
-          { "mode", lower = false }
+          {
+            "mode",
+            fmt = function(str)
+              return str:sub(1, 1):upper() .. str:sub(2):lower()
+            end,
+          },
         },
-        lualine_b = {
+        lualine_b = {},
+        lualine_c = {
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           {
             "filename",
-            "branch",
-            "diff"
+            file_status = true, -- displays file status (readonly status, modified status)
+            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+            color = { bg = "dynamic", fg = "#d8dee9" },
           },
-        },
-        lualine_c = {
           {
             "diagnostics",
-            sources = { "nvim_diagnostic" },
-            symbols = { error = "", warn = "", info = "", hint = "" },
+            symbols = {
+              error = "",
+              warn = "",
+              info = "",
+              hint = "󰠠",
+            },
+          },
+          {
+            function()
+              return navic.get_location()
+            end,
+            cond = function()
+              return navic.is_available()
+            end,
+            color_correction = "dynamic",
           },
         },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location'
+        lualine_x = {
+          Snacks.profiler.status(),
+          -- stylua: ignore
+          {
+            function() return require("noice").api.status.command.get() end,
+            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+            color = function() return { fg = Snacks.util.color("Statement") } end,
+          },
+          -- stylua: ignore
+          {
+            function() return require("noice").api.status.mode.get() end,
+            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+            color = function() return { fg = Snacks.util.color("Constant") } end,
+          },
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = function()
+              return { fg = Snacks.util.color("Special") }
+            end,
+          },
+          -- 'filetype',
+          {
+            "branch",
+            icon = "󰊢",
+          },
+          {
+            "diff",
+            symbols = { added = "", modified = "", removed = "" },
+            source = function()
+              local gitsigns = vim.b.gitsigns_status_dict
+              if gitsigns then
+                return {
+                  added = gitsigns.added,
+                  modified = gitsigns.changed,
+                  removed = gitsigns.removed,
+                }
+              end
+            end,
+          },
+          "fileformat",
+        },
+        lualine_y = { { "location", padding = { left = 0, right = 1 } } },
+        lualine_z = {
+          -- -- time o'clock
+          function()
+            return " " .. os.date("%R")
+          end,
         },
       },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {}
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {},
     })
-  end
+  end,
 }
