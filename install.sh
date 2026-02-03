@@ -27,7 +27,7 @@ install_brew() {
 
 create_symlinks() {
     echo "Removing existing dotfiles..."
-    rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.config/nvim ~/.ideavimrc ~/.wezterm.lua ~/.config/starship.toml	2>/dev/null
+    rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.config/nvim	2>/dev/null
 
     echo "Creating symlinks..."
     mkdir -p ~/projects ~/.config
@@ -35,13 +35,13 @@ create_symlinks() {
     ln -s ~/.dotfiles/zshrc ~/.zshrc
     ln -s ~/.dotfiles/nvim ~/.config/nvim
     ln -s ~/.dotfiles/ghostty ~/.config/ghostty
+    ln -s ~/.dotfiles/kitty ~/.config/kitty
     ln -s ~/.dotfiles/yazi ~/.config/yazi.toml
-
 }
 
 install_brew_packages() {
 echo "Installing packages brew"
-        brew updater
+        brew update
 
         brew install neovim
         brew install nvm
@@ -53,6 +53,7 @@ echo "Installing packages brew"
         brew install zsh-syntax-highlighting
         brew install zsh-completions
         brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
+        brew install anomalyco/tap/opencode
 
         if ! check_command fzf; then
           brew install fzf
@@ -153,3 +154,5 @@ case $os_type inee
         exit 1
         ;;
 esac
+
+echo "Your development environment is ready! Blast off!"
