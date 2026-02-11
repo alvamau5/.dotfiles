@@ -145,31 +145,27 @@ cd ~/dotfiles/fedora
 
 - GNOME Tweaks
 - Ghostty terminal emulator
-
-**Virtualization:**
-
-- KVM/QEMU for Android Emulator
+- Kitty terminal emulator
+- VLC multimeida 
 
 ### Applications
 
 **Browsers:**
 
-- Google Chrome Beta
+- Zen Browser
 
 **Development:**
 
 - Visual Studio Code
-- Android Studio (2025.1.3.7)
+- Nvim enveiroment
 
 **Utilities:**
 
-- 1Password
 - Starship prompt
 
 **AI Tools:**
 
-- Google Gemini CLI
-- Anthropic Claude Code CLI
+- Opencode AI
 
 ### GPU Drivers
 
@@ -194,7 +190,6 @@ The script auto-detects your GPU:
 
 ### Fonts
 
-- JetBrains Mono (installed to `~/.local/share/fonts`)
 - Cascadia Code (installed to `~/.local/share/fonts`)
 
 ---

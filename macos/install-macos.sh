@@ -63,11 +63,8 @@ disable_dock_hot_corners() {
 install_brew_cask_packages() {
     echo "Installing macOS applications via Homebrew Cask..."
 
-    brew install --cask 1password
-    brew install --cask docker
-    brew install --cask google-chrome
+    brew install --cask zen
     brew install --cask logi-options+
-    brew install --cask jetbrains-toolbox
     brew install --cask visual-studio-code
     brew install --cask raycast
     brew install --cask whatsapp
