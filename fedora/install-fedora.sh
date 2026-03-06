@@ -53,10 +53,16 @@ install_fedora_packages() {
     sudo dnf install -y unrar
 
     # Install Ghostty terminal emulator
+    sudo dnf copr enable -y scottames/ghostty
     sudo dnf install -y ghostty
 
+    # Install Kitty terminal emulator
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin/kitty
+    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop    
+
     # Install Vicinae (file manager)
-    sudo dnf copr enable -y gvalkov/vicinae
+    sudo dnf copr enable -y  quadratech188/vicinae
     sudo dnf install -y vicinae
 }
 
@@ -115,16 +121,16 @@ install_gpu_drivers() {
 }
 
 # Update firmware
-update_firmware() {
-    echo "Updating firmware..."
-
-    sudo fwupdmgr refresh --force
-    sudo fwupdmgr get-devices # Lists devices with available updates
-    sudo fwupdmgr get-updates # Fetches list of available updates
-    sudo fwupdmgr update --assume-yes || echo "No firmware updates available or update failed"
-
-    echo "Firmware update completed."
-}
+#update_firmware() {
+#    echo "Updating firmware..."
+#
+#    sudo fwupdmgr refresh --force
+#    sudo fwupdmgr get-devices # Lists devices with available updates
+#    sudo fwupdmgr get-updates # Fetches list of available updates
+#    sudo fwupdmgr update --assume-yes || echo "No firmware updates available or update failed"
+#
+#    echo "Firmware update completed."
+#}
 
 # Install multimedia codecs and packages
 install_multimedia() {
