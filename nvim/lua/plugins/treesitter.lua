@@ -8,7 +8,7 @@ return {
       'windwp/nvim-ts-autotag'
     },
     config = function()
-      local config = require("nvim-treesitter.configs")
+      local config = require("nvim-treesitter.config")
       config.setup({
         -- A list of parser names, or "all"
         ensure_installed = {

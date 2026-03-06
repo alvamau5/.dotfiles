@@ -10,8 +10,8 @@
 #   /Users/lucio/Library/Application Support/com.mitchellh.ghostty/config
 #
 theme = ENCOM
-font-size = 12
-font-family = CaskaydiaCove Nerd Font
+font-size = 12.5
+font-family = CaskaydiaCove Nerd Font Mono
 gtk-titlebar = false
 title = "Ghostty"
 gtk-wide-tabs = false
@@ -24,6 +24,7 @@ window-padding-balance = true
 shell-integration = zsh
 mouse-hide-while-typing = true
 cursor-style-blink = true
+unfocused-split-opacity = 0.85
 #
 # macOS-specific settings
 macos-titlebar-style = tabs
@@ -33,7 +34,7 @@ macos-option-as-alt = true
 # # All of these are identical:
 keybind = ctrl+shift+k=next_tab
 keybind = ctrl+shift+j=previous_tab
-keybind = ctrl+alt+l=goto_split:right
-keybind = ctrl+alt+h=goto_split:left
+keybind = shift+alt+l=goto_split:right
+keybind = shift+alt+h=goto_split:left
 keybind = shift+alt+j=goto_split:up
 keybind = shift+alt+k=goto_split:down

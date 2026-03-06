@@ -127,7 +127,7 @@ create_symlinks() {
     ln -s ~/.dotfiles/nvim ~/.config/nvim
     ln -s ~/.dotfiles/ghostty ~/.config/ghostty
     ln -s ~/.dotfiles/kitty ~/.config/kitty
-    ln -s ~/.dotfiles/yazi ~/.config/yazi.toml
+    ln -s ~/.dotfiles/yazi ~/.config/yazi
 }
 
 # Install common brew packages
