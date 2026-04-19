@@ -1,158 +1,31 @@
 #!/usr/bin/env bash
 
-# Function to keep updating the sudo timestamp until the script ends
-keep_sudo_alive() {
-	while true; do
-		sudo -n true
-		sleep 60
-	done 2>/dev/null &
-}
+# Entrypoint: detects the OS and runs the appropriate setup script
 
-# Function to check if a command exists
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 check_command() {
-    local cmd="$1"
-    command -v "$cmd" &> /dev/null
-}
-
-install_brew() {
-  if ! check_command brew; then
-    echo "Installing Brew..."
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      if [[ $os_type == "Linux" ]]; then
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bashrc"
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-      fi
-  fi
-}
-
-create_symlinks() {
-    echo "Removing existing dotfiles..."
-    rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.config/nvim	2>/dev/null
-
-    echo "Creating symlinks..."
-    mkdir -p ~/projects ~/.config
-
-    ln -s ~/.dotfiles/zshrc ~/.zshrc
-    ln -s ~/.dotfiles/nvim ~/.config/nvim
-    ln -s ~/.dotfiles/ghostty ~/.config/ghostty
-    ln -s ~/.dotfiles/kitty ~/.config/kitty
-    ln -s ~/.dotfiles/yazi ~/.config/yazi.toml
-}
-
-install_brew_packages() {
-echo "Installing packages brew"
-        brew update
-
-        brew install neovim
-        brew install nvm
-        brew install node
-        brew install npm
-        brew install gh
-        brew install starship
-        brew install zsh-autosuggestions
-        brew install zsh-syntax-highlighting
-        brew install zsh-completions
-        brew install yazi ffmpegthumbnailer ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
-        brew install anomalyco/tap/opencode
-
-        if ! check_command fzf; then
-          brew install fzf
-          # Add FZF shortcuts
-          "$(brew --prefix)"/opt/fzf/install
-        fi
-}
-
-install_brew_cask_packages() {
-        brew install --cask whatsapp
-        brew install --cask ghostty
-}
-
-setup_linux() {
-	echo -e "Using specific config for Linux \n"
-
-	# update OS
-	# sudo dnf upgrade -y
-
-	sudo dnf install -y zsh curl wget git
-	sudo dnf5 install @development-tools -y
-
-	create_symlinks
-
-	# Install Fonts
-	mkdir -p ~/.local/share/fonts
-	echo "Installing Cascadia"
-	wget -qO- $(curl -s https://api.github.com/repos/microsoft/cascadia-code/releases/latest | grep browser_download_url | grep zip | cut -d '"' -f 4) -O cascadia.zip
-	unzip -o cascadia.zip -d ~/.local/share/fonts
-	rm cascadia.zip
-	fc-cache -fv
-
-	install_brew
-	# install_starship
-	install_brew_packages
-
-	# Check if the current shell is already zsh
-	if [[ "$SHELL" == *"zsh" ]]; then
-	    echo "ZSH is the default shell."
-	else
-	    # Get the path of zsh
-	    zsh_path=$(which zsh)
-
-	    # Change the default shell to zsh for future logins
-	    echo "Setting up zsh as your default shell..."
-	    if chsh -s "$zsh_path"; then
-		echo "Setup complete. Log out and back in to start using zsh as your default shell."
-	    else
-		echo "Error: Failed to change the default shell."
-		echo "Please try running 'chsh -s $(which zsh)' manually."
-	    fi
-	fi
-}
-
-setup_mac() {
-	echo -e "Using specific config for Mac \n"
-
-	create_symlinks
-
-	install_brew
-
-	brew tap homebrew/cask-fonts
-
-	# casks only work in mac
-	echo "Installing Caskaydia"
-        brew install --cask font-caskaydia-cove-nerd-font
-
-	brew install reattach-to-user-namespace
-
-	install_brew_packages
-	install_brew_cask_packages
+    command -v "$1" &>/dev/null
 }
 
 os_type=""
 
-if check_command ujust; then
-        os_type="Linux"
-elif [[ $(uname) == "Darwin" ]]; then
-    os_type="Mac"
+if [[ "$(uname)" == "Darwin" ]]; then
+    os_type="macOS"
+elif check_command dnf; then
+    os_type="Fedora"
+else
+    echo "Unsupported OS. Only macOS and Fedora are supported."
+    exit 1
 fi
 
-echo -e "$os_type detected. Using $os_type config... \n"
+echo "$os_type detected. Starting setup..."
 
-# Ask for the administrator password upfront and keep the sudo timestamp updated
-#sudo -v
-
-# keep_sudo_alive
-
-case $os_type inee
-    "Linux")
-        setup_linux
-        ;;
-    "Mac")
-        setup_mac
-        ;;
-    *)
-        echo "Unknown OS type: $os_type. Exiting."
-        exit 1
-        ;;
+case $os_type in
+"macOS")
+    bash "$SCRIPT_DIR/setup/macos/install-macos.sh"
+    ;;
+"Fedora")
+    bash "$SCRIPT_DIR/setup/fedora/install-fedora.sh"
+    ;;
 esac
-
-echo "Your development environment is ready! Blast off!"
