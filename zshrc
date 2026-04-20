@@ -40,6 +40,12 @@ alias grmc='git rm --cached'
 alias gst='git status'
 alias gpm='git push'
 
+
+# Aliases: tmux
+alias ta='tmux attach'
+alias tl='tmux list-sessions'
+alias tn='tmux'
+
 # System aliases
 alias ll='ls -la',
 alias c='clear'
@@ -92,3 +98,4 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # opencode
 export PATH=/home/alvamau5/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
