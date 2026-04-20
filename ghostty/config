@@ -9,23 +9,24 @@
 #   Route for macOS
 #   /Users/lucio/Library/Application Support/com.mitchellh.ghostty/config
 #
-theme = ENCOM
-font-size = 12.5
-font-family = CaskaydiaCove Nerd Font Mono
+theme = Catppuccin Frappe
+font-size = 14
+font-family = CascadiaCode NF
 gtk-titlebar = false
-title = "Ghostty"
+#title = "Ghostty"
 gtk-wide-tabs = false
 gtk-tabs-location = hidden
 window-theme = dark
 window-decoration = true
 window-padding-x = 10
-window-padding-y = 10
-window-padding-balance = true
+window-padding-y = 5
+# window-padding-balance = true
 shell-integration = zsh
 mouse-hide-while-typing = true
 cursor-style-blink = true
-unfocused-split-opacity = 0.85
-#
+unfocused-split-opacity = 0.75
+background-opacity = 0.95
+
 # macOS-specific settings
 macos-titlebar-style = tabs
 macos-option-as-alt = true
