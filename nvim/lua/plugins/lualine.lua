@@ -13,7 +13,7 @@ return {
     require("lualine").setup({
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = "auto",
+        theme = "nightfly",
         component_separators = { left = " ╱ ", right = " ╱ " },
         section_separators = { left = "", right = "" },
       },
@@ -33,7 +33,7 @@ return {
             "filename",
             file_status = true, -- displays file status (readonly status, modified status)
             path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-            color = { bg = "dynamic", fg = "#d8dee9" },
+            color = { fg = "#d8dee9" },
           },
           {
             "diagnostics",
