@@ -2,13 +2,14 @@ return {
   "nvimtools/none-ls.nvim",
   config = function()
     local null_ls = require("null-ls")
+
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     local formatting = null_ls.builtins.formatting
-    --local diagnostics = null_ls.builtins.diagnostics
+    -- local diagnostics = null_ls.builtins.diagnostics
     local completion = null_ls.builtins.completion
     local null_sources = {
       completion.spell,
-      --diagnostics.eslint,
+      -- diagnostics.eslint,
       formatting.prettier,
       formatting.stylua.with({ extra_args = { "--indent_type", "Spaces", "indent_width", "2" } }),
     }
