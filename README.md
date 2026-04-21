@@ -3,7 +3,7 @@
 ```
 config/    — dotfiles that get symlinked (zshrc, nvim, ghostty, tmux, etc.)
 setup/     — machine provisioning scripts (macos, fedora)
-setup.sh   — entrypoint (detects OS, runs the right installer)
+install.sh   — entrypoint (detects OS, runs the right installer)
 ```
 
 ## Bootstrap
@@ -13,7 +13,7 @@ setup.sh   — entrypoint (detects OS, runs the right installer)
 ```bash
 xcode-select --install
 git clone https://github.com/alvamau5/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && bash setup.sh
+cd ~/.dotfiles && bash install.sh
 ```
 
 ### Fedora
