@@ -68,6 +68,11 @@ install_fedora_packages() {
     # Enable KVM for Android Emulator
     sudo dnf5 install @virtualization -y
     sudo usermod -aG kvm $(whoami)
+
+    # Install ranger file manager
+    echo "Install Ranger File Manager and Configs..."
+    sudo dnf install -y ranger
+    sudo dnf install -y w3m w3m-img
 }
 
 Install GPU drivers
