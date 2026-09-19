@@ -104,6 +104,30 @@ local logs = {
 ██╔══██║██║    ╚██╗ ██╔╝██╔══██║██║╚██╔╝██║██╔══██║██║   ██║╚════██║
 ██║  ██║███████╗╚████╔╝ ██║  ██║██║ ╚═╝ ██║██║  ██║╚██████╔╝███████║
 ╚═╝  ╚═╝╚══════╝ ╚═══╝  ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝]],
+  i = [[
+    GET IN THE FUKKEN ROBOT, SHINJI
+                 _            ____
+                : \           |   \    .
+                |  \ .        |    :   |\            /\
+             .  |   :|\__     |    |   | \          /  \
+.            |\ |   |! \ \    |    |   | |\        /   /
+\"-.______   | \:   ||\ \ \   |    |   | | \      /   /
+ \_       "-_|  |\  || \ \/   |    |___| ! |\____/  _/-. /\
+   "-_   ____:  |_\ ||  \/  ___\  __  _//  | |  ___ \---" /
+      \  \   |  _____,  /___\___\/ / /   \_! |  // _/  / /
+    ___\_ \__|  |    | __. _/____ / /     /  > // /    \/
+  //_________|  /    |/  |/  \__// /     /  /_/ \/
+             | /     |   :      | /     /__/
+             |/                 |/   E V A N G E L I O N ]],
+j = [[
+ ░▒▓███████▓▒░░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓██████████████▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▓█▓▒░ ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▓█▓▒░ ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓██████▓▒░   ░▒▓██▓▒░  ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░
+]]
 }
 
 return {
@@ -112,9 +136,10 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    notifier = { enabled = true },
+    notifier = { enabled = true }, -- nicer notifications
     image = { enabled = true },
-    -- explorer = { enabled = true },
+    explorer = { enabled = true },
+    quickfile = { enabled = true }, -- render a file before plugins load
     picker = {
       matcher = {
         fuzzy = true,
@@ -127,57 +152,46 @@ return {
           hidden = true,
           auto_close = true,
           layout = {
-              width = 30,
+            layout = {
+              -- Reduce el ancho aquí
+              width = 28, -- Valor fijo en número de columnas (ej. 30 columnas)
+              min_width = 20, -- Evita que se colapse de más si hay un mínimo por defecto
+            },
           },
           matcher = {
-            fuzzy = true,          -- Enables fuzzy matching, so you can be a bit imprecise with your search terms
-            smartcase = true,      -- If your search term has uppercase letters, the search becomes case-sensitive
-            ignorecase = true,     -- Ignores case when searching, unless smartcase is triggered
+            fuzzy = true, -- Enables fuzzy matching, so you can be a bit imprecise with your search terms
+            smartcase = true, -- If your search term has uppercase letters, the search becomes case-sensitive
+            ignorecase = true, -- Ignores case when searching, unless smartcase is triggered
             filename_bonus = true, -- Gives a higher priority to matches in filenames
-            sort_empty = false,    -- If no matches are found, it won't sort the results
+            sort_empty = false, -- If no matches are found, it won't sort the results
           },
         },
       },
     },
     dashboard = {
       width = 60,
-      row = nil,    -- dashboard position. nil for center
-      col = nil,    -- dashboard position. nil for center
+      row = nil, -- dashboard position. nil for center
+      col = nil, -- dashboard position. nil for center
       pane_gap = 4, -- empty columns between vertical panes
       sections = {
         { section = "header" },
-        {
-          icon = " ",
-          title = "Keymaps",
-          section = "keys",
-          indent = 2,
-          padding = 1,
-        },
+        { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
         -- { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        {
-          icon = " ",
-          title = "Projects",
-          section = "projects",
-          indent = 2,
-          padding = 1,
-        },
+        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
         { section = "startup" },
       },
       preset = {
-
-        header = logs.c,
+        -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
+        ---@type fun(cmd:string, opts:table)|nil
+        pick = nil,
+        header = logs.j,
         ---@type snacks.dashboard.Item[]
         keys = {
           -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
           -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          {
-            icon = " ",
-            key = "c",
-            desc = "Config",
-            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-          },
-          -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          --{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
@@ -185,41 +199,12 @@ return {
     },
   },
   keys = {
-    {
-      "<leader><space>",
-      function()
-        Snacks.picker.smart()
-      end,
-      desc = "Smart Find Files",
-    },
-    {
-      "<leader>,",
-      function()
-        Snacks.picker.buffers()
-      end,
-      desc = "Buffers",
-    },
-    {
-      "<leader>/",
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = "Grep",
-    },
-    -- {
-    --   "<leader>e",
-    --   function()
-    --     Snacks.explorer()
-    --   end,
-    --   desc = "Explorer File Browser",
-    -- },
-    -- {
-    --   "<c-\\>",
-    --   function()
-    --     require("snacks").terminal()
-    --   end,
-    --   desc = "Toggle Terminal",
-    --   mode = { "n", "t" },
-    -- },
+    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+    { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { '<leader>l', function() Snacks.picker.lines() end, desc = '[/] Fuzzily search in current buffer' },
+    { '<leader>p', function() Snacks.picker.files() end, desc = '[S]earch [F]iles' },
+    { '<leader>f', function() Snacks.picker.grep_word() end, desc = '[S]earch current [W]ord' },
+    { "<leader>/", function() Snacks.picker.grep { buffers = true } end, desc = '[S]earch [/] in Open Files' },
+    { "<leader>e", function() Snacks.explorer() end, desc = "Explorer File Browser" },
   },
 }

@@ -13,7 +13,7 @@ return {
     require("lualine").setup({
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = "nightfly",
+        theme = "auto",
         component_separators = { left = " ╱ ", right = " ╱ " },
         section_separators = { left = "", right = "" },
       },
@@ -52,6 +52,7 @@ return {
               return navic.is_available()
             end,
             color_correction = "dynamic",
+            navic_opts = nil,
           },
         },
         lualine_x = {

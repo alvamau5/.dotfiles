@@ -1,8 +1,10 @@
+-- Core editor options. See `:help vim.o` and `:help option-list`.
+
 -- Appearance
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.o.pumheight = 10 -- Max items to show in pop up menu
-vim.o.cmdheight = 1  -- Max items to show in command menu
+vim.o.cmdheight = 1 -- Max items to show in command menu
 vim.g.have_nerd_font = true
 
 -- Files & Others
@@ -30,7 +32,7 @@ vim.opt.wrap = false
 
 -- use native clipboard
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = "unnamedplus"
 end)
 
 -- set case insensitive searching
@@ -48,3 +50,6 @@ vim.opt.showmatch = true
 
 -- Mouse & Scrollings
 vim.opt.mouse = "a"
+
+-- Rounded borders on all floating windows (hover, diagnostics, signature, etc.).
+vim.o.winborder = "rounded"
