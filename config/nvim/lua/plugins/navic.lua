@@ -4,12 +4,7 @@ return {
   init = function()
     vim.g.navic_silence = true
   end,
-  opts = function()
-    local Snacks = require("snacks")
-    Snacks.util.lsp.on({ method = "textDocument/documentSymbol" }, function(buffer, client)
-      require("nvim-navic").attach(client, buffer)
-    end)
-    return {
+  opts = {
       separator = " ",
       highlight = false,
       depth_limit = 5,
@@ -43,5 +38,4 @@ return {
       },
       lazy_update_context = true,
     }
-  end,
 }

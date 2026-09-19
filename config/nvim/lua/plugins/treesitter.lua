@@ -1,26 +1,21 @@
 return {
-  -- Parsers + highlighting nativo (API nueva, rama `main`)
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     build = ':TSUpdate',
     lazy = false,
     config = function()
-      local parsers = {
-        'vimdoc', 'lua', 'typescript', 'javascript', 'html', 'css',
-        'python', 'json', 'tsx', 'pug', 'bash',
-      }
+      local base = { 'vimdoc', 'html', 'css', 'json', 'pug' }
+      local parsers = vim.list_extend(base, require('config.languages').load().parsers)
 
       require('nvim-treesitter').setup {}
       require('nvim-treesitter').install(parsers)
-
       vim.treesitter.language.register('bash', 'zsh')
 
       vim.api.nvim_create_autocmd('FileType', {
         pattern = parsers,
         callback = function() vim.treesitter.start() end,
       })
-
       vim.api.nvim_create_autocmd('FileType', {
         pattern = parsers,
         callback = function()
@@ -29,90 +24,13 @@ return {
       })
     end,
   },
-
-  -- Rainbow delimiters: plugin independiente, con su propia configuración
   {
     'HiPhish/rainbow-delimiters.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    -- main = 'rainbow-delimiters.setup',
-    -- opts = function()
-    --   return {
-    --     strategy = {
-    --       [''] = require('rainbow-delimiters').strategy['global'],
-    --     },
-    --     query = {
-    --       [''] = 'rainbow-delimiters',
-    --     },
-    --     blacklist = { 'cpp' },
-    --   }
-    -- end,
   },
-
-  -- Autotag: antes estaba como dependencia sin inicializar, ahora sí arranca
   {
     'windwp/nvim-ts-autotag',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
 }
-
--- return {
---   {
---     "nvim-treesitter/nvim-treesitter",
---     build = ":TSUpdate",
---     event = { "BufReadPre", "BufNewFile" },
---     dependencies = {
---       'HiPhish/rainbow-delimiters.nvim',
---       'windwp/nvim-ts-autotag'
---     },
---     config = function()
---       local config = require("nvim-treesitter.config")
---       config.setup({
---         -- A list of parser names, or "all"
---         ensure_installed = {
---           "vimdoc",
---           "lua",
---           "typescript",
---           "javascript",
---           "html",
---           "css",
---           "python",
---           "json",
---           "tsx",
---           "pug",
---         },
---
---         -- Install parsers synchronously (only applied to ensure_installed)
---         sync_install = false,
---
---         -- Automatically install missing parsers when entering buffer
---         -- Recommendation: set to false if you don't have tree-sitter CLI installed locally
---         auto_install = true,
---
---         rainbow = {
---           enable = true,
---           -- list of languages you want to disable the plugin for
---           disable = { 'cpp' },
---           -- Which query to use for finding delimiters
---           query = 'rainbow-delimiters',
---           -- Highlight the entire buffer all at once
---           strategy = require('rainbow-delimiters').strategy.global,
---         },
---
---         highlight = {
---           -- false will disable the whole extension
---           enable = true,
---           -- Setting this to true will run :h syntax and tree-sitter at the same time.
---           -- Set this to true if you depend on 'syntax' being enabled (like for indentation).
---           -- Using this option may slow down your editor, and you may see some duplicate highlights.
---           -- Instead of true it can also be a list of languages
---           additional_vim_regex_highlighting = false,
---         },
---         -- use bash parser for zsh files
---         vim.treesitter.language.register("bash", "zsh"),
---
---         indent = { enable = true },
---       })
---     end
---   }
--- }
