@@ -2,16 +2,16 @@
 
 -- Appearance
 vim.opt.termguicolors = true
-vim.opt.background = "dark"
+vim.opt.background = 'dark'
 vim.o.pumheight = 10 -- Max items to show in pop up menu
 vim.o.cmdheight = 1 -- Max items to show in command menu
 vim.g.have_nerd_font = true
 
 -- Files & Others
-vim.g.mapleader = " "
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
-vim.opt.ambiwidth = "single"
+vim.g.mapleader = ' '
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
+vim.opt.ambiwidth = 'single'
 
 -- Update & backups
 vim.opt.backup = false
@@ -24,15 +24,16 @@ vim.o.writebackup = false
 vim.opt.splitright = true
 
 -- Wrapping
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
+-- vim.opt.colorcolumn = '80,120'
 
 -- use native clipboard
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 -- set case insensitive searching
@@ -49,7 +50,7 @@ vim.opt.smartindent = true
 vim.opt.showmatch = true
 
 -- Mouse & Scrollings
-vim.opt.mouse = "a"
+vim.opt.mouse = 'a'
 
 -- Rounded borders on all floating windows (hover, diagnostics, signature, etc.).
-vim.o.winborder = "rounded"
+vim.o.winborder = 'rounded'
