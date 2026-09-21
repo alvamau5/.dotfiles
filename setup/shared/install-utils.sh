@@ -120,17 +120,18 @@ install_brew() {
 # Create symlinks for dotfiles
 create_symlinks() {
     echo "Removing existing dotfiles..."
-    rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.config/nvim ~/projects ~/.config/ghostty 2>/dev/null
+    rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.config/nvim ~/.config/ghostty ~/.config/kitty ~/.config/ranger ~/.config/yazi ~/projects 2>/dev/null
 
     echo "Creating symlinks..."
     mkdir -p ~/projects ~/.config ~/.config/tmux
 
-    ln -s ~/.dotfiles/zshrc ~/.zshrc
-    ln -s ~/.dotfiles/nvim ~/.config/nvim
-    ln -s ~/.dotfiles/tmux.conf ~/.config/tmux/tmux.conf
-    ln -s ~/.dotfiles/ghostty ~/.config/ghostty
-    #ln -s ~/.dotfiles/kitty ~/.config/kitty
-    ln -s ~/.dotfiles/yazi ~/.config/yazi
+    ln -s ~/.dotfiles/config/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/config/nvim ~/.config/nvim
+    ln -s ~/.dotfiles/config/tmux.conf ~/.config/tmux/tmux.conf
+    ln -s ~/.dotfiles/config/ghostty ~/.config/ghostty
+    ln -s ~/.dotfiles/config/kitty ~/.config/kitty
+    ln -s ~/.dotfiles/config/ranger ~/.config/ranger
+    ln -s ~/.dotfiles/config/yazi ~/.config/yazi
 }
 
 # Install common brew packages
