@@ -93,27 +93,27 @@
 --   end,
 -- }
 
-return {
-  "mitander/flume.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    vim.opt.termguicolors = true
-    require("flume").setup({
-      schema = "dusk",
-      transparent = true,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { bold = true, italic = true },
-        functions = { italic = true },
-        types = { bold = true, italic = true },
-        strings = { italic = true },
-        variables = { italic = true },
-      },
-    })
-  end,
-}
+-- return {
+--   "mitander/flume.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.opt.termguicolors = true
+--     require("flume").setup({
+--       schema = "dusk",
+--       transparent = true,
+--       terminal_colors = true,
+--       styles = {
+--         comments = { italic = true },
+--         keywords = { bold = true, italic = true },
+--         functions = { italic = true },
+--         types = { bold = true, italic = true },
+--         strings = { italic = true },
+--         variables = { italic = true },
+--       },
+--     })
+--   end,
+-- }
 
 -- return {
 --   "mitander/flume.nvim",
@@ -157,3 +157,22 @@ return {
 --     vim.cmd("colorscheme rwth-dark")
 --   end,
 -- }
+
+return {
+  'nyoom-engineering/oxocarbon.nvim',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.api.nvim_set_hl(0, 'Keyword', { italic = true })
+    vim.api.nvim_set_hl(0, 'Function', { italic = true })
+    vim.api.nvim_set_hl(0, 'Type', { italic = true })
+    vim.api.nvim_set_hl(0, 'String', { italic = true })
+
+    vim.opt.background = 'dark'
+    vim.cmd.colorscheme 'oxocarbon'
+
+    vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+  end,
+}
