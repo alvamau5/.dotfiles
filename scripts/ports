@@ -1,0 +1,18 @@
+#!/bin/bash
+# Show processes listening on a specific port or all ports — Fedora (ss) y macOS (lsof).
+if command -v ss &>/dev/null; then
+  if [ -z "$1" ]; then
+    ss -tulnp
+  else
+    ss -tulnp | grep ":$1"
+  fi
+elif command -v lsof &>/dev/null; then
+  if [ -z "$1" ]; then
+    lsof -i -P -n | grep LISTEN
+  else
+    lsof -i -P -n | grep LISTEN | grep ":$1"
+  fi
+else
+  echo "Ni 'ss' ni 'lsof' están disponibles en este sistema."
+  exit 1
+fi

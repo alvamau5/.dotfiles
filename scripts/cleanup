@@ -1,0 +1,23 @@
+#!/bin/bash
+# Clean up system cache, logs, and unused packages — Fedora (dnf) y macOS (brew).
+set -e
+
+if command -v dnf &>/dev/null; then
+  sudo dnf autoremove -y
+  sudo dnf clean all
+elif command -v brew &>/dev/null; then
+  brew cleanup -s
+elif command -v apt &>/dev/null; then
+  sudo apt autoremove -y
+  sudo apt autoclean
+fi
+
+# Clean journal logs older than 3 days (solo Linux con systemd)
+if command -v journalctl &>/dev/null; then
+  sudo journalctl --vacuum-time=3d
+fi
+
+# Clean tmp files older than 7 days
+find /tmp -type f -atime +7 -delete 2>/dev/null || true
+
+echo "Cleanup done!"

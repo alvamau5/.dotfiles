@@ -1,0 +1,15 @@
+#!/bin/bash
+# Update and upgrade system packages — Fedora (dnf) y macOS (brew).
+set -e
+
+if command -v dnf &>/dev/null; then
+  sudo dnf upgrade -y
+elif command -v brew &>/dev/null; then
+  brew update && brew upgrade
+elif command -v apt &>/dev/null; then
+  sudo apt update && sudo apt upgrade -y
+elif command -v pacman &>/dev/null; then
+  sudo pacman -Syu
+fi
+
+echo "System updated!"
