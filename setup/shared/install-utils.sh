@@ -132,6 +132,7 @@ create_symlinks() {
     ln -s ~/.dotfiles/config/kitty ~/.config/kitty
     ln -s ~/.dotfiles/config/ranger ~/.config/ranger
     ln -s ~/.dotfiles/config/yazi ~/.config/yazi
+    ln -s ~/.dotfiles/config/starship.toml ~/.config/starship.toml
 }
 
 # Install common brew packages
