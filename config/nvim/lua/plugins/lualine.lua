@@ -1,26 +1,26 @@
 return {
-  "nvim-lualine/lualine.nvim",
+  'nvim-lualine/lualine.nvim',
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    "archibate/lualine-time",
-    "SmiteshP/nvim-navic",
+    'nvim-tree/nvim-web-devicons',
+    'archibate/lualine-time',
+    'SmiteshP/nvim-navic',
   },
   config = function()
-    local lazy_status = require("lazy.status")
-    local Snacks = require("snacks")
-    local navic = require("nvim-navic")
+    local lazy_status = require 'lazy.status'
+    local Snacks = require 'snacks'
+    local navic = require 'nvim-navic'
 
-    require("lualine").setup({
+    require('lualine').setup {
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = "auto",
-        component_separators = { left = " ╱ ", right = " ╱ " },
-        section_separators = { left = "", right = "" },
+        theme = 'auto',
+        component_separators = { left = ' ╱ ', right = ' ╱ ' },
+        section_separators = { left = '', right = '' },
       },
       sections = {
         lualine_a = {
           {
-            "mode",
+            'mode',
             fmt = function(str)
               return str:sub(1, 1):upper() .. str:sub(2):lower()
             end,
@@ -28,20 +28,21 @@ return {
         },
         lualine_b = {},
         lualine_c = {
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
           {
-            "filename",
+            'filename',
             file_status = true, -- displays file status (readonly status, modified status)
             path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-            color = { fg = "#d8dee9" },
+            color = { fg = '#d8dee9' },
+            symbols = { modified = ' ●', readonly = ' ', unnamed = '…' },
           },
           {
-            "diagnostics",
+            'diagnostics',
             symbols = {
-              error = "",
-              warn = "",
-              info = "",
-              hint = "󰠠",
+              error = '',
+              warn = '',
+              info = '',
+              hint = '󰠠',
             },
           },
           {
@@ -51,7 +52,7 @@ return {
             cond = function()
               return navic.is_available()
             end,
-            color_correction = "dynamic",
+            color_correction = 'dynamic',
             navic_opts = nil,
           },
         },
@@ -73,17 +74,17 @@ return {
             lazy_status.updates,
             cond = lazy_status.has_updates,
             color = function()
-              return { fg = Snacks.util.color("Special") }
+              return { fg = Snacks.util.color 'Special' }
             end,
           },
           -- 'filetype',
           {
-            "branch",
-            icon = "󰊢",
+            'branch',
+            icon = '󰊢',
           },
           {
-            "diff",
-            symbols = { added = "", modified = "", removed = "" },
+            'diff',
+            symbols = { added = '', modified = '', removed = '' },
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
               if gitsigns then
@@ -95,16 +96,16 @@ return {
               end
             end,
           },
-          "fileformat",
+          'fileformat',
         },
-        lualine_y = { { "location", padding = { left = 0, right = 1 } } },
+        lualine_y = { { 'location', padding = { left = 0, right = 1 } } },
         lualine_z = {
           -- -- time o'clock
           function()
-            return " " .. os.date("%R")
+            return ' ' .. os.date '%R'
           end,
         },
       },
-    })
+    }
   end,
 }
