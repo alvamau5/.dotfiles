@@ -13,12 +13,21 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+#aliases
+
+#Claude Code
+alias cl="claude --dangerously-skip-permissions"
+
 # Git aliases
 alias g='git'
 alias ga='git add'
+alias gaa="git add -A"
 alias gc='git commit -v'
 alias gd='git diff'
 alias gf='git fetch'
+alias gl="git pull"
+alias gb="git branch"
+alias gco="git checkout"
 alias glgg='git log --graph'
 alias grmc='git rm --cached'
 alias gst='git status'
@@ -37,6 +46,20 @@ alias ...='cd ../..'
 alias del='rm -r'
 alias b='bat'
 alias ls='eza --icons --color=always'
+
+# Node/npm
+alias nd="npm run dev"
+alias nb="npm run build"
+alias ns="npm start"
+alias ni="npm install"
+alias nt="npm test"
+
+# Node/pnpm
+alias pd="pnpm run dev"
+alias pb="pnpm run build"
+alias ps="pnpm start"
+alias pi="pnpm install"
+alias pt="pnpm test"
 
 # History configuration
 HISTFILE=${HOME}/.zsh_history
